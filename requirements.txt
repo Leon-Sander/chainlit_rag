@@ -1,0 +1,7 @@
+chainlit
+langchain
+langchain-community
+langchain-openai
+python-dotenv
+pypdf
+qdrant-client
