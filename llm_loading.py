@@ -16,13 +16,13 @@ def get_openai_llm(temperature = 0.2, streaming = True):
     return ChatOpenAI(temperature=temperature, streaming=streaming)
 
 def get_vector_db(embeddings, collection_name):
-    client = QdrantClient()
-    async_client = AsyncQdrantClient()
+    client = QdrantClient("qdrant", port=6333)
+    async_client = AsyncQdrantClient("qdrant", port=6333)
     qdrant = Qdrant(client=client, async_client=async_client, collection_name=collection_name, embeddings=embeddings)
     return qdrant
 
 def create_db_collection(collection_name):
-    client = QdrantClient()
+    client = QdrantClient("qdrant", port=6333)
     client.create_collection(
         collection_name=collection_name,
         vectors_config=VectorParams(size=1536, distance=Distance.COSINE),
